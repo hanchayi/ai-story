@@ -6,17 +6,17 @@ export default function Header() {
       <Image
         className="relative w-9 h-9"
         src="/back.svg"
-        alt="Next.js Logo"
-        width={180}
-        height={37}
+        alt="Back"
+        width={36}
+        height={36}
         priority
       />
       <Image
         className="relative w-9 h-9"
         src="/nav.svg"
-        alt="Next.js Logo"
-        width={180}
-        height={37}
+        alt="Nav"
+        width={36}
+        height={36}
         priority
       />
     </div>
