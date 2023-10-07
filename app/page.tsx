@@ -1,14 +1,18 @@
 import Carousel from '@/components/carousel'
+import { Categories } from '@/components/categories'
 import Header from '@/components/header'
 import Search from '@/components/search'
+import Stories from '@/components/stories'
 
 export default function Home() {
   return (
     <main className="">
       <Header></Header>
-      <section className='mt-20'>
+      <section className='pt-20'>
         <Search></Search>
         <Carousel></Carousel>
+        <Categories></Categories>
+        <Stories></Stories>
       </section>
     </main>
   )
