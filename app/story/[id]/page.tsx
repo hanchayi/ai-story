@@ -100,7 +100,7 @@ export default async function Story({ params }: { params: { id: string }} ) {
   </div>
 }
 
-export function Tags({...props}: { marginTop: string }) {
+function Tags({...props}: { marginTop: string }) {
   const tags = [
     '#Romantic',
     '#Fiction',
@@ -123,7 +123,7 @@ export function Tags({...props}: { marginTop: string }) {
   )
 }
 
-export function Categories() {
+function Categories() {
   const categories = [
     'Time travel',
     'RPG',
