@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 interface StoryItem {
+  id: string | number;
   url: string;
   title: string;
   desc: string;
@@ -8,32 +9,37 @@ interface StoryItem {
 }
 
 export default function Stories() {
-  const stories = [
+  const stories: StoryItem[] = [
     {
+      id: 1,
       url: "/story.png",
       title: "Spider Potter",
       desc: "Love, celebration, and a promise of forever.",
       author: "/story.png",
     },
     {
+      id: 2,
       url: "/story.png",
       title: "Spider Potter",
       desc: "Love, celebration, and a promise of forever.",
       author: "/story.png",
     },
     {
+      id: 3,
       url: "/story.png",
       title: "Spider Potter",
       desc: "Love, celebration, and a promise of forever.",
       author: "/story.png",
     },
     {
+      id: 4,
       url: "/story.png",
       title: "Spider Potter",
       desc: "Love, celebration, and a promise of forever.",
       author: "/story.png",
     },
     {
+      id: 5,
       url: "/story.png",
       title: "Spider Potter",
       desc: "Love, celebration, and a promise of forever.",
@@ -51,7 +57,8 @@ export default function Stories() {
 
 export function Story(story: StoryItem) {
   return (
-    <div
+    <a
+      href={ `/story/${story.id}`}
       className="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow">
       <Image
         className="object-cover w-full rounded-t-lg h-32"
@@ -74,6 +81,6 @@ export function Story(story: StoryItem) {
           </Image>
         </div>
       </div>
-    </div>
+    </a>
   )
 }

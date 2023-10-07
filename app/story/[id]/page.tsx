@@ -1,7 +1,8 @@
 import Header from "@/components/header";
 import Image from "next/image";
 
-export default function Story() {
+export default function Story({ params }: { params: { id: string }} ) {
+  console.log('params', params)
   const story = {
     url: "/story.png",
   }
