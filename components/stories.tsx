@@ -21,48 +21,6 @@ async function getData() {
       },
     },
   });
-  console.log('post', post)
-  // return {
-  //   props: { feed },
-  //   revalidate: 10,
-  // };
-  // const stories: StoryItem[] = [
-  //   {
-  //     id: 1,
-  //     url: "/story.png",
-  //     title: "Spider Potter",
-  //     desc: "Love, celebration, and a promise of forever.",
-  //     author: "/story.png",
-  //   },
-  //   {
-  //     id: 2,
-  //     url: "/story.png",
-  //     title: "Spider Potter",
-  //     desc: "Love, celebration, and a promise of forever.",
-  //     author: "/story.png",
-  //   },
-  //   {
-  //     id: 3,
-  //     url: "/story.png",
-  //     title: "Spider Potter",
-  //     desc: "Love, celebration, and a promise of forever.",
-  //     author: "/story.png",
-  //   },
-  //   {
-  //     id: 4,
-  //     url: "/story.png",
-  //     title: "Spider Potter",
-  //     desc: "Love, celebration, and a promise of forever.",
-  //     author: "/story.png",
-  //   },
-  //   {
-  //     id: 5,
-  //     url: "/story.png",
-  //     title: "Spider Potter",
-  //     desc: "Love, celebration, and a promise of forever.",
-  //     author: "/story.png",
-  //   },
-  // ]
   const stories: StoryItem[] = post.map(p => {
     return {
       id: p.id,
@@ -83,13 +41,14 @@ export default async function Stories() {
   return (
     <div className="px-3 grid gap-4 grid-cols-2">
       {
-        stories.map(story => Story(story))
+        stories.map(story => <Story key={story.id} story={ story }></Story>)
       }
     </div>
   )
 }
 
-export function Story(story: StoryItem) {
+export function Story({ ...props }: { story: StoryItem })  {
+  const { story } = props
   return (
     <a
       href={ `/story/${story.id}`}
