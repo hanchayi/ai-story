@@ -7,7 +7,7 @@ import Stories from '@/components/stories'
 export default function Home() {
   return (
     <main className="">
-      <Header></Header>
+      <Header hideBack={ true }></Header>
       <section className='pt-20'>
         <Search></Search>
         <Carousel></Carousel>
