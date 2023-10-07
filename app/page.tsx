@@ -10,8 +10,14 @@ export default function Home() {
       <Header hideBack={ true }></Header>
       <section className='pt-20'>
         <Search></Search>
+      </section>
+      <section>
         <Carousel></Carousel>
+      </section>
+      <section>
         <Categories></Categories>
+      </section>
+      <section className='mt-1'>
         <Stories></Stories>
       </section>
     </main>
