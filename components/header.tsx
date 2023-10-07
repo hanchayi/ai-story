@@ -6,7 +6,9 @@ interface HeaderProps {
 
 export default function Header({ ...props }: HeaderProps) {
   return (
-    <div className="fixed top-0 right-0 left-0 flex items-center h-20 px-3 justify-between z-10">
+    <div
+      className="fixed top-0 right-0 left-0 flex items-center h-20 px-3 justify-between z-10 w-screen"
+    >
       <a
         href='/'
       >
