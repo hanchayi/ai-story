@@ -1,51 +1,85 @@
+import prisma from "@/lib/prisma";
 import Image from "next/image";
 
 interface StoryItem {
-  id: string | number;
+  id: string;
   url: string;
   title: string;
   desc: string;
-  author: string;
+  author: {
+    name: string;
+    image: string;
+  };
 }
 
-export default function Stories() {
-  const stories: StoryItem[] = [
-    {
-      id: 1,
-      url: "/story.png",
-      title: "Spider Potter",
-      desc: "Love, celebration, and a promise of forever.",
-      author: "/story.png",
+async function getData() {
+  const post = await prisma.post.findMany({
+    where: { published: true },
+    include: {
+      author: {
+        select: { name: true, image: true },
+      },
     },
-    {
-      id: 2,
-      url: "/story.png",
-      title: "Spider Potter",
-      desc: "Love, celebration, and a promise of forever.",
-      author: "/story.png",
-    },
-    {
-      id: 3,
-      url: "/story.png",
-      title: "Spider Potter",
-      desc: "Love, celebration, and a promise of forever.",
-      author: "/story.png",
-    },
-    {
-      id: 4,
-      url: "/story.png",
-      title: "Spider Potter",
-      desc: "Love, celebration, and a promise of forever.",
-      author: "/story.png",
-    },
-    {
-      id: 5,
-      url: "/story.png",
-      title: "Spider Potter",
-      desc: "Love, celebration, and a promise of forever.",
-      author: "/story.png",
-    },
-  ]
+  });
+  console.log('post', post)
+  // return {
+  //   props: { feed },
+  //   revalidate: 10,
+  // };
+  // const stories: StoryItem[] = [
+  //   {
+  //     id: 1,
+  //     url: "/story.png",
+  //     title: "Spider Potter",
+  //     desc: "Love, celebration, and a promise of forever.",
+  //     author: "/story.png",
+  //   },
+  //   {
+  //     id: 2,
+  //     url: "/story.png",
+  //     title: "Spider Potter",
+  //     desc: "Love, celebration, and a promise of forever.",
+  //     author: "/story.png",
+  //   },
+  //   {
+  //     id: 3,
+  //     url: "/story.png",
+  //     title: "Spider Potter",
+  //     desc: "Love, celebration, and a promise of forever.",
+  //     author: "/story.png",
+  //   },
+  //   {
+  //     id: 4,
+  //     url: "/story.png",
+  //     title: "Spider Potter",
+  //     desc: "Love, celebration, and a promise of forever.",
+  //     author: "/story.png",
+  //   },
+  //   {
+  //     id: 5,
+  //     url: "/story.png",
+  //     title: "Spider Potter",
+  //     desc: "Love, celebration, and a promise of forever.",
+  //     author: "/story.png",
+  //   },
+  // ]
+  const stories: StoryItem[] = post.map(p => {
+    return {
+      id: p.id,
+      url: p.cover,
+      title: p.title,
+      desc: p.desc,
+      author: {
+        name: p.author?.name || 'no name',
+        image: p.author?.image || 'no image',
+      },
+    }
+  })
+  return stories
+}
+
+export default async function Stories() {
+  const stories = await getData()
   return (
     <div className="px-3 grid gap-4 grid-cols-2">
       {
@@ -76,7 +110,7 @@ export function Story(story: StoryItem) {
             height={ 32 }
             className="w-8 h-8 rounded-full"
             alt=""
-            src={ story.author }
+            src={ story.author.image }
           >
           </Image>
         </div>
